@@ -1,10 +1,11 @@
 require "test_helper"
 require "vcr"
+require "address_helper"
 
 class WeatherServiceTest < Minitest::Test
   describe "#fetch_forecast" do
     before do
-      lat, long = %w[37.7749 -122.4194]
+      lat, long = AddressHelper::WHITE_HOUSE_COORDINATES
       @service = WeatherService.new(lat: lat, long: long)
     end
 
@@ -34,7 +35,7 @@ class WeatherServiceTest < Minitest::Test
 
   describe "#fetch_current_weather" do
     before do
-      lat, long = %w[37.7749 -122.4194]
+      lat, long = AddressHelper::WHITE_HOUSE_COORDINATES
       @service = WeatherService.new(lat: lat, long: long)
     end
 
@@ -45,7 +46,7 @@ class WeatherServiceTest < Minitest::Test
         assert result.key?(:temperature), "Temperature should be present in the result"
         assert result.key?(:high), "High temperature should be present in the result"
         assert result.key?(:low), "Low temperature should be present in the result"
-        assert result.key?(:description), "Description should be present in the result"
+        assert result.key?(:condition), "Condition should be present in the result"
         assert result.key?(:time), "Time should be present in the result"
       end
     end

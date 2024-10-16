@@ -2,49 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.openweathermap.org/data/2.5/weather?appid=<API_KEY>&lat=37.7749&lon=-122.4194&units=imperial
-    body:
-      encoding: US-ASCII
-      string: ''
-    headers:
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-      User-Agent:
-      - Ruby
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Server:
-      - openresty
-      Date:
-      - Tue, 15 Oct 2024 22:49:27 GMT
-      Content-Type:
-      - application/json; charset=utf-8
-      Content-Length:
-      - '515'
-      Connection:
-      - keep-alive
-      X-Cache-Key:
-      - "/data/2.5/weather?lat=37.77&lon=-122.42&units=imperial"
-      Access-Control-Allow-Origin:
-      - "*"
-      Access-Control-Allow-Credentials:
-      - 'true'
-      Access-Control-Allow-Methods:
-      - GET, POST
-    body:
-      encoding: UTF-8
-      string: '{"coord":{"lon":-122.4194,"lat":37.7749},"weather":[{"id":801,"main":"Clouds","description":"few
-        clouds","icon":"02d"}],"base":"stations","main":{"temp":67.75,"feels_like":67.75,"temp_min":62.53,"temp_max":73.49,"pressure":1016,"humidity":75,"sea_level":1016,"grnd_level":1012},"visibility":10000,"wind":{"speed":13.8,"deg":290},"clouds":{"all":20},"dt":1729031792,"sys":{"type":2,"id":2017837,"country":"US","sunrise":1729001905,"sunset":1729042311},"timezone":-25200,"id":5391959,"name":"San
-        Francisco","cod":200}'
-  recorded_at: Tue, 15 Oct 2024 22:49:27 GMT
-- request:
-    method: get
-    uri: https://api.openweathermap.org/data/2.5/forecast?appid=<API_KEY>&lat=37.7749&lon=-122.4194&units=imperial
+    uri: https://api.openweathermap.org/data/2.5/forecast?appid=test&lat=38.897556&lon=-77.03645399999999&units=imperial
     body:
       encoding: US-ASCII
       string: ''
