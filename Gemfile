@@ -58,4 +58,4 @@ group :test do
   gem "vcr"  # To record and replay HTTP requests in tests
 end
 
-gem "dockerfile-rails", ">= 1.6", :group => :development
+gem "dockerfile-rails", ">= 1.6", group: :development
