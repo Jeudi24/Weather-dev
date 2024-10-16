@@ -43,10 +43,16 @@ class WeatherServiceTest < Minitest::Test
       VCR.use_cassette("weather_service/fetch_current_weather") do
         result = @service.fetch_current_weather
 
+        assert result.is_a?(Hash), "Result should be a hash"
+
+        assert result.key?(:city_name), "City name should be present in the result"
         assert result.key?(:temperature), "Temperature should be present in the result"
+        assert result.key?(:date), "Date should be present in the result"
         assert result.key?(:high), "High temperature should be present in the result"
         assert result.key?(:low), "Low temperature should be present in the result"
+        assert result.key?(:feels_like), "Feels like temperature should be present in the result"
         assert result.key?(:condition), "Condition should be present in the result"
+        assert result.key?(:icon), "Icon should be present in the result"
         assert result.key?(:time), "Time should be present in the result"
       end
     end

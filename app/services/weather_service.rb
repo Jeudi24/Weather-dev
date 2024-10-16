@@ -39,10 +39,14 @@ class WeatherService < ApiService
   # @return [Hash] parsed forecast details
   def self.parse_weather(response)
     {
-      temperature: response["main"]["temp"],
-      high: response["main"]["temp_max"],
-      low: response["main"]["temp_min"],
-      description: response["weather"][0]["description"],
+      city_name: response["name"],
+      temperature: response["main"]["temp"].round,
+      date: Time.at(response["dt"]).to_date,
+      high: response["main"]["temp_max"].round,
+      low: response["main"]["temp_min"].round,
+      feels_like: response["main"]["feels_like"].round,
+      condition: response["weather"][0]["description"].titleize,
+      icon: get_feather_icon_from_weather_description(response["weather"][0]["description"]),
       time: Time.at(response["dt"])
     }
   end
@@ -50,9 +54,31 @@ class WeatherService < ApiService
   # Parse the forecast data into a simplified hash
   # @param [Hash] response: the API response data
   # @return [Array<Hash>] parsed forecast details
-  def self.parse_forecast(response)
-    response.map do |forecast|
-      self.parse_weather(forecast)
+  # Map the weather description to a Feather icon name
+  # @param [String] description: the weather description
+  # @return [String] the Feather icon name
+  def self.get_feather_icon_from_weather_description(description)
+    case description
+    when "clear sky"
+      "sun"
+    when "few clouds"
+      "cloud"
+    when "scattered clouds"
+      "cloud"
+    when "broken clouds"
+      "cloud"
+    when "shower rain"
+      "cloud-rain"
+    when "rain"
+      "cloud-rain"
+    when "thunderstorm"
+      "cloud-lightning"
+    when "snow"
+      "cloud-snow"
+    when "mist"
+      "cloud-drizzle"
+    else
+      "sun"
     end
   end
 end
