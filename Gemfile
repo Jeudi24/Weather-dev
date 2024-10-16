@@ -21,8 +21,6 @@ gem "tzinfo-data", platforms: %i[ windows jruby ]
 
 gem "httparty"  # To make HTTP requests to external APIs
 
-gem "vcr"  # To record and replay HTTP requests in tests
-
 # Reduces boot times through caching; required in config/boot.rb
 gem "bootsnap", require: false
 
@@ -57,4 +55,5 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webmock"
+  gem "vcr"  # To record and replay HTTP requests in tests
 end
