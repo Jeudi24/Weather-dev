@@ -18,21 +18,13 @@ class WeatherService < ApiService
 
   # Fetch the forecast for the provided lat/long
   # @return [Array<Hash>] parsed forecast data (temperature, high, low, description)
-  def fetch_forecast
+  def fetch_five_day_forecast
     response = self.class.get("/forecast", query: { lat: @lat, lon: @long, appid: @api_key, units: "imperial" })
     handle_api_errors(response)
     self.class.parse_forecast(response["list"])
   end
 
   private
-
-  # Error handling for external API failures
-  # Raise error in case of failure so that the controller can rescue it and display appropriate messages
-  def handle_api_errors(response)
-    unless response.success?
-      raise "API Error: #{response['message']}"
-    end
-  end
 
   # Parse the weather data into a simplified hash
   # @param [Hash] response: the API response data
@@ -54,6 +46,26 @@ class WeatherService < ApiService
   # Parse the forecast data into a simplified hash
   # @param [Hash] response: the API response data
   # @return [Array<Hash>] parsed forecast details
+  def self.parse_forecast(api_response)
+    grouped_by_date = api_response.group_by { |record| record["dt_txt"].to_date }
+
+    grouped_by_date.map do |forecast_date, daily_records|
+      most_frequent_condition = most_frequent(daily_records.map { |record| record["weather"].first["description"] })
+      {
+        date: forecast_date,
+        temperature: daily_records.map { |record| record["main"]["temp"].round }.max,
+        icon: get_feather_icon_from_weather_description(most_frequent_condition)
+      }
+    end
+  end
+
+  # Find the most frequently occurring element in an array
+  # @param [Array] array: the array to search
+  # @return [Object] the most frequently occurring element
+  def self.most_frequent(array)
+    array.group_by(&:itself).max_by { |_, occurrences| occurrences.size }.first
+  end
+
   # Map the weather description to a Feather icon name
   # @param [String] description: the weather description
   # @return [String] the Feather icon name

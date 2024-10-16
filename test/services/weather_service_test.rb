@@ -3,22 +3,22 @@ require "vcr"
 require "address_helper"
 
 class WeatherServiceTest < Minitest::Test
-  describe "#fetch_forecast" do
+  describe "#fetch_five_day_forecast" do
     before do
       lat, long = AddressHelper::WHITE_HOUSE_COORDINATES
       @service = WeatherService.new(lat: lat, long: long)
     end
 
-    it "fetches the forecast" do
+    it "fetches the five day forecast" do
       VCR.use_cassette("weather_service/fetch_forecast") do
-        result = @service.fetch_forecast
+        result = @service.fetch_five_day_forecast
 
         assert result.is_a?(Array), "Result should be an array"
+        assert_equal 5, result.size, "Result should contain 5 days of forecast data"
+
+        assert result.first.key?(:date), "Date should be present in the result"
         assert result.first.key?(:temperature), "Temperature should be present in the result"
-        assert result.first.key?(:high), "High temperature should be present in the result"
-        assert result.first.key?(:low), "Low temperature should be present in the result"
-        assert result.first.key?(:description), "Description should be present in the result"
-        assert result.first.key?(:time), "Time should be present in the result"
+        assert result.first.key?(:icon), "Icon should be present in the result"
       end
     end
 
@@ -26,7 +26,7 @@ class WeatherServiceTest < Minitest::Test
       @service = WeatherService.new(lat: "invalid", long: "invalid")
       VCR.use_cassette("weather_service/fetch_forecast_error") do
         assert_raises RuntimeError do |e|
-          @service.fetch_forecast
+          @service.fetch_five_day_forecast
           e.message.include?("wrong latitude")
         end
       end
