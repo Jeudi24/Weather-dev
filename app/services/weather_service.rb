@@ -1,6 +1,5 @@
 # Service Object to handle external API calls for weather data
-class WeatherService
-  include HTTParty
+class WeatherService < ApiService
   base_uri "https://api.openweathermap.org/data/2.5"
 
   def initialize(lat:, long:)
