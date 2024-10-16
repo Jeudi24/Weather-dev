@@ -1,0 +1,63 @@
+/* General flash message styles */
+.flash-message {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 15px;
+  border-radius: 5px;
+  font-size: 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  animation: slide-in 0.5s ease-in-out;
+  opacity: 1;
+  transition: opacity 0.5s ease-out;
+}
+
+/* Success message (green) */
+.flash-success {
+  background-color: #d4edda;
+  color: #155724;
+  border: 1px solid #c3e6cb;
+}
+
+/* Error message (red) */
+.flash-error {
+  background-color: #f8d7da;
+  color: #721c24;
+  border: 1px solid #f5c6cb;
+}
+
+/* Info message (blue) */
+.flash-info {
+  background-color: #d1ecf1;
+  color: #0c5460;
+  border: 1px solid #bee5eb;
+}
+
+/* Close button */
+.flash-close {
+  cursor: pointer;
+  font-weight: bold;
+  padding: 0 10px;
+  color: inherit;
+  font-size: 18px;
+}
+
+/* Keyframes for slide-in animation */
+@keyframes slide-in {
+  from {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* Fade-out effect for auto-dismiss */
+.fade-out {
+  opacity: 0;
+}
