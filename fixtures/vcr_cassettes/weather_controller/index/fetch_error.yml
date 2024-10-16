@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://maps.googleapis.com/maps/api/geocode/json?address=1234%20Not%20a%20Real%20Address&key=AIzaSyBylKyQvOsvKYOfXxmvKJS3-GLUuyL6-hc&language=en&sensor=false
+    uri: https://maps.googleapis.com/maps/api/geocode/json?address=1234%20Not%20a%20Real%20Address&key=<API_KEY>&language=en&sensor=false
     body:
       encoding: US-ASCII
       string: ''
@@ -21,7 +21,7 @@ http_interactions:
       Content-Type:
       - application/json; charset=UTF-8
       Date:
-      - Wed, 16 Oct 2024 17:45:39 GMT
+      - Wed, 16 Oct 2024 22:22:25 GMT
       Pragma:
       - no-cache
       Expires:
@@ -45,7 +45,7 @@ http_interactions:
       X-Frame-Options:
       - SAMEORIGIN
       Server-Timing:
-      - gfet4t7; dur=83
+      - gfet4t7; dur=58
       Alt-Svc:
       - h3=":443"; ma=2592000,h3-29=":443"; ma=2592000
     body:
@@ -55,5 +55,5 @@ http_interactions:
            "results" : [],
            "status" : "ZERO_RESULTS"
         }
-  recorded_at: Wed, 16 Oct 2024 17:45:39 GMT
+  recorded_at: Wed, 16 Oct 2024 22:22:25 GMT
 recorded_with: VCR 6.3.1

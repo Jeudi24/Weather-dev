@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://api.openweathermap.org/data/2.5/weather?appid=test&lat=38.897556&lon=-77.03645399999999&units=imperial
+    uri: https://api.openweathermap.org/data/2.5/weather?appid=<API_KEY>&lat=38.897556&lon=-77.03645399999999&units=imperial
     body:
       encoding: US-ASCII
       string: ''
@@ -21,15 +21,15 @@ http_interactions:
       Server:
       - openresty
       Date:
-      - Tue, 15 Oct 2024 23:05:18 GMT
+      - Wed, 16 Oct 2024 22:22:24 GMT
       Content-Type:
       - application/json; charset=utf-8
       Content-Length:
-      - '529'
+      - '517'
       Connection:
       - keep-alive
       X-Cache-Key:
-      - "/data/2.5/weather?lat=37.77&lon=-122.42&units=imperial"
+      - "/data/2.5/weather?lat=38.9&lon=-77.04&units=imperial"
       Access-Control-Allow-Origin:
       - "*"
       Access-Control-Allow-Credentials:
@@ -38,8 +38,8 @@ http_interactions:
       - GET, POST
     body:
       encoding: UTF-8
-      string: '{"coord":{"lon":-122.4194,"lat":37.7749},"weather":[{"id":801,"main":"Clouds","description":"few
-        clouds","icon":"02d"}],"base":"stations","main":{"temp":66.72,"feels_like":66.67,"temp_min":63.32,"temp_max":73.49,"pressure":1016,"humidity":76,"sea_level":1016,"grnd_level":1012},"visibility":10000,"wind":{"speed":15.99,"deg":308,"gust":25.01},"clouds":{"all":20},"dt":1729033199,"sys":{"type":2,"id":2017837,"country":"US","sunrise":1729001905,"sunset":1729042311},"timezone":-25200,"id":5391959,"name":"San
-        Francisco","cod":200}'
-  recorded_at: Tue, 15 Oct 2024 23:05:18 GMT
+      string: '{"coord":{"lon":-77.0365,"lat":38.8976},"weather":[{"id":803,"main":"Clouds","description":"broken
+        clouds","icon":"04d"}],"base":"stations","main":{"temp":55.51,"feels_like":53.2,"temp_min":52.7,"temp_max":57.18,"pressure":1020,"humidity":52,"sea_level":1020,"grnd_level":1012},"visibility":10000,"wind":{"speed":11.5,"deg":340},"clouds":{"all":75},"dt":1729117304,"sys":{"type":2,"id":2002287,"country":"US","sunrise":1729077530,"sunset":1729117680},"timezone":-14400,"id":4140963,"name":"Washington
+        D.C.","cod":200}'
+  recorded_at: Wed, 16 Oct 2024 22:22:24 GMT
 recorded_with: VCR 6.3.1
