@@ -1,0 +1,53 @@
+
+<div class="wrapper">
+  <span class="weather-container  <%= @forecast ? "active" : "" %>">
+    <div class="weather-panel">
+      <div class="weather-overlay"></div>
+      <div class="date-info">
+        <h2 class="day-name"><%= Date.today.strftime("%A") %></h2>
+        <span class="day-number"><%= Date.today.strftime("%b %d, %Y") %></span>
+        <i class="city-icon" data-feather="map-pin"></i>
+        <span class="city"><%= @current_weather&.dig(:city_name) %></span>
+      </div>
+      <div class="weather-info"><i class="weather-icon" data-feather="<%= @current_weather&.dig(:icon) %>"></i>
+        <h1 class="temperature"><%= @current_weather&.dig(:temperature) %>°</h1>
+        <h3 class="weather-description"><%= @current_weather&.dig(:condition) %></h3>
+        <% if @cache_key_exists %>
+          <span class="cache-badge">Served from Cache</span>
+        <% end %>
+      </div>
+    </div>
+    <div class="details-panel">
+      <div class="today-details">
+        <div class="precipitation"> <span class="label">HIGHT</span><span class="value"><%= @current_weather&.dig(:high) %>°</span>
+          <div class="clearfix"></div>
+        </div>
+        <div class="humidity"> <span class="label">LOW</span><span class="value"><%= @current_weather&.dig(:low) %>°</span>
+          <div class="clearfix"></div>
+        </div>
+        <div class="wind"> <span class="label">FEELS LIKE</span><span class="value"><%= @current_weather&.dig(:feels_like) %>°</span>
+          <div class="clearfix"></div>
+        </div>
+      </div>
+      <div>
+        <ul class="week-forecast">
+          <% @forecast&.each do |day| %>
+            <li>
+              <i class="day-icon" data-feather="<%= day[:icon] %>"></i>
+              <span class="day-label"><%= day[:date].strftime("%a") %></span>
+              <span class="day-temp"><%= day[:temperature] %>°F</span>
+            </li>
+          <% end %>
+          <div class="clearfix"></div>
+        </ul>
+      </div>
+      <div class="location-section"><button class="location-btn" onclick="showAddressInput()"> <i data-feather="map-pin"></i><span>Change location</span></button></div>
+    </div>
+  </span>
+  <div class="address-input <%= @forecast.blank? ? "active" : "hide" %>" id="addressInput">
+    <%= form_with url: weather_index_path, method: :get, local: true do |form| %>
+      <%= form.text_field :address, placeholder: 'Search by address, city, or zip code' %>
+      <%= form.button "Get Forecast" %>
+    <% end %>
+  </div>
+</div>
