@@ -16,7 +16,6 @@ document.addEventListener('turbo:load', function() {
     addressInput.style.opacity = '0';
   }
 
-  // Attach the functions to the global scope if needed
   window.showAddressInput = showAddressInput;
   window.hideAddressInput = hideAddressInput;
 });
