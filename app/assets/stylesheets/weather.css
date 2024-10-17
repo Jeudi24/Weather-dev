@@ -131,6 +131,7 @@ body {
 }
 
 .week-forecast {
+    display: flex;
     list-style-type: none;
     padding: 0;
     margin: 10px 35px;
