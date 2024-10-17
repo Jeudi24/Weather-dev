@@ -1,24 +1,44 @@
-# README
+# Weather Forecast App
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This Ruby on Rails app accepts an address as input and provides weather forecast details based on the address.
 
-Things you may want to cover:
+## Features:
+- Accepts a user-provided address, converts it to lat/long coordinates using Geocoder.
+- Fetches weather data (temperature, high/low, description) from OpenWeatherMap API.
+- Caches the results for 30 minutes to improve performance.
 
-* Ruby version
+## Setup:
+1. Clone the repository.
+2. Install dependencies by running `bundle install`
+3. Obtain the master.key and put it in `config/master.key` or run the following:
 
-* System dependencies
+  Prerequisites: Obtain API Keys from
+    - Google Cloud Console for Google Geocoding API
+    - OpenWeatherMap API
 
-* Configuration
+  ```
+    rm -rf config/credentials.yml.enc
+    EDITOR=nano rails credentials:edit
+  ```
 
-* Database creation
+  paste the following after the defaults:
 
-* Database initialization
+  ```
+  development:
+    google_geocoder_api_key: <Replace me with API Key>
+    open_weather_api_key: <Replace me with API Key>
 
-* How to run the test suite
+  production:
+    google_geocoder_api_key: <Replace me with API Key>
+    open_weather_api_key: <Replace me with API Key>
 
-* Services (job queues, cache servers, search engines, etc.)
+  test:
+    google_geocoder_api_key: test
+    open_weather_api_key: test
+  ```
 
-* Deployment instructions
+  4. run `rails s` to start the development environment.
 
-* ...
+  ## Demo
+  The Weather App is hosted here:
+  https://weather-app-delian.fly.dev/
